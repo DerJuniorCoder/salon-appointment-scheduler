@@ -1,0 +1,22 @@
+CREATE DATABASE salon;
+\c salon;
+
+CREATE TABLE customers(
+customer_id SERIAL PRIMARY KEY,
+phone VARCHAR UNIQUE,
+name VARCHAR
+);
+
+CREATE TABLE services(
+service_id SERIAL PRIMARY KEY,
+name VARCHAR
+);
+
+CREATE TABLE appointments(
+appointment_id SERIAL PRIMARY KEY,
+time VARCHAR	
+);
+ALTER TABLE appointments ADD COLUMN customer_id INT REFERENCES customers(customer_id);
+ALTER TABLE appointments ADD COLUMN service_id INT REFERENCES services(service_id);
+
+INSERT INTO services(name) VALUES('cut','color','perm','style');
